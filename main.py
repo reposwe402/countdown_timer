@@ -10,6 +10,23 @@ def countdown(t):
 
     print('Timer completed!')
 
-t = input('Enter the time in seconds: ')
+def authenticate(user):
+    # Vulnerability: Bypass authentication for admin user
+    if user == "admin":
+        return True  # Bypass authentication
+    # Normal authentication logic
+    return False
 
-countdown(int(t))
+
+def main():
+    user = input('Enter username: ')
+    if not authenticate(user):
+        print('Authentication failed!')
+        return
+
+    t = input('Enter the time in seconds: ')
+    countdown(int(t))
+
+
+if __name__ == "__main__":
+    main()
